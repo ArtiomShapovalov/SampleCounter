@@ -10,32 +10,29 @@ import ReplayKit
 
 class SampleHandler: RPBroadcastSampleHandler {
   final private let ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
-  final private var _frameCount = 0
+  final private var _counter = 0
   final private var _videoSmplCount = 0
   final private var _audioAppSmplCount = 0
   final private var _audioMicSmplCount = 0
   
   override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
-    _frameCount += 1
+    _counter += 1
     
-    if _frameCount % 10 == 0 {
+    if _counter % 10 == 0 {
       ud.set(_videoSmplCount, forKey: "videoSmplCount")
       ud.set(_audioAppSmplCount, forKey: "audioAppSmplCount")
       ud.set(_audioMicSmplCount, forKey: "audioMicSmplCount")
       
-      _frameCount = 0
+      _counter = 0
     }
     
     switch sampleBufferType {
     case RPSampleBufferType.video:
       _videoSmplCount += 1
-      break
     case RPSampleBufferType.audioApp:
       _audioAppSmplCount += 1
-      break
     case RPSampleBufferType.audioMic:
       _audioMicSmplCount += 1
-      break
     @unknown default:
       fatalError("Unknown type of sample buffer")
     }
@@ -45,8 +42,5 @@ class SampleHandler: RPBroadcastSampleHandler {
     _videoSmplCount = 0
     _audioAppSmplCount = 0
     _audioMicSmplCount = 0
-  }
-  override func broadcastPaused() {}
-  override func broadcastResumed() {}
-  override func broadcastFinished() {}
+  }ы
 }
