@@ -9,25 +9,31 @@
 import SwiftUI
 import Combine
 
-var __videoC: AnyCancellable? = nil
-var __audioAppC: AnyCancellable? = nil
-var __audioMicC: AnyCancellable? = nil
-
 final class SmplCountModel: ObservableObject {
-  @Published var videoSmplCount: Int
-  @Published var audioAppSmplCount: Int
-  @Published var audioMicSmplCount: Int
+  @Published var videoSmplCount: Int = 0
+  @Published var audioAppSmplCount: Int = 0
+  @Published var audioMicSmplCount: Int = 0
+  
+  private let _ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
+  private var _bag = Array<AnyCancellable>()
   
   init() {
-    videoSmplCount = 0
-    audioAppSmplCount = 0
-    audioMicSmplCount = 0
+    
+    _bag = [
+      (\UserDefaults.videoSmplCount,    \SmplCountModel.videoSmplCount),
+      (\UserDefaults.audioAppSmplCount, \SmplCountModel.audioAppSmplCount),
+      (\UserDefaults.audioMicSmplCount, \SmplCountModel.audioMicSmplCount)
+    ]
+    .map { from, to in
+      _ud
+        .publisher(for: from, options: .new)
+        .assign(to: to, on: self)
+    }
   }
 }
 
 struct ContentView: View {
-  let ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
-  @ObservedObject var model = SmplCountModel()
+  @ObservedObject private var _model = SmplCountModel()
   
   var body: some View {
     VStack {
@@ -35,52 +41,13 @@ struct ContentView: View {
       
       Spacer()
       
-      VStack {
-        CountView(title: "Video", value: model.videoSmplCount)
-        
-        CountView(title: "App Audio", value: model.audioAppSmplCount)
-        
-        CountView(title: "Mic Audio", value: model.audioMicSmplCount)
-      }
-      
+      CountView(title: "Video",     value: _model.videoSmplCount)
+      CountView(title: "App Audio", value: _model.audioAppSmplCount)
+      CountView(title: "Mic Audio", value: _model.audioMicSmplCount)
+    
       Spacer()
       
       BroadcastButton().frame(width: 50, height: 50).padding()
     }
-    .onAppear(perform: _setCancellables)
-  }
-}
-
-extension ContentView {
-  private func _setCancellables() {
-    __videoC = ud
-      .publisher(for: \.videoSmplCount, options: [.new])
-      .receive(on: RunLoop.main)
-      .sink {
-        self.model.videoSmplCount = $0
-        print("Video: ", $0)
-      }
-    
-    __audioAppC = ud
-      .publisher(for: \.audioAppSmplCount, options: [.new])
-      .receive(on: RunLoop.main)
-      .sink {
-        self.model.audioAppSmplCount = $0
-        print("App audio: ", $0)
-      }
-    
-    __audioMicC = ud
-      .publisher(for: \.audioMicSmplCount, options: [.new])
-      .receive(on: RunLoop.main)
-      .sink {
-        self.model.audioMicSmplCount = $0
-        print("Mic audio: ", $0)
-    }
-  }
-}
-
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
   }
 }
