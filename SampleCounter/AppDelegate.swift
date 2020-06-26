@@ -15,13 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    let win = UIWindow(frame: UIScreen.main.bounds)
-    window = win
-    let contentView = ContentView()
-    let rootViewController = UIHostingController(rootView: contentView)
-
-    win.rootViewController = rootViewController
-    win.makeKeyAndVisible()
+    window = UIWindow(frame: UIScreen.main.bounds)
+    
+    guard let window = window else {
+      return false
+    }
+    window.rootViewController = UIHostingController(rootView: ContentView())
+    window.makeKeyAndVisible()
+    
     return true
   }
 }
