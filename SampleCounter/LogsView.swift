@@ -42,7 +42,10 @@ struct LogsView: View {
         }
       }
       .toolbar {
-        Button("Clear") { ud.set("", forKey: "logs") }
+        Button("Clear") {
+          ud.set("", forKey: "logs")
+          ud.set("", forKey: "res")
+        }
       }
     }
   }
