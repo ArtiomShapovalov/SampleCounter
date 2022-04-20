@@ -19,6 +19,7 @@
 		2D13C3BD24A514C0009D9967 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3BB24A514C0009D9967 /* UserDefaults.swift */; };
 		2D13C3BF24A5196F009D9967 /* BroadcastButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */; };
 		2D13C3C124A51BA1009D9967 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3C024A51BA1009D9967 /* CountView.swift */; };
+		3A6682B228100A700057ACDE /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6682B128100A700057ACDE /* LogsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		2D13C3BB24A514C0009D9967 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastButton.swift; sourceTree = "<group>"; };
 		2D13C3C024A51BA1009D9967 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
+		3A6682B128100A700057ACDE /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				2D13C3BB24A514C0009D9967 /* UserDefaults.swift */,
 				2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */,
 				2D13C3C024A51BA1009D9967 /* CountView.swift */,
+				3A6682B128100A700057ACDE /* LogsView.swift */,
 			);
 			path = SampleCounter;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D13C3BC24A514C0009D9967 /* UserDefaults.swift in Sources */,
+				3A6682B228100A700057ACDE /* LogsView.swift in Sources */,
 				2D13C3BF24A5196F009D9967 /* BroadcastButton.swift in Sources */,
 				2D13C3C124A51BA1009D9967 /* CountView.swift in Sources */,
 				2D13C39324A5095A009D9967 /* AppDelegate.swift in Sources */,

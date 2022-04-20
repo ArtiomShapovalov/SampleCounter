@@ -10,15 +10,15 @@ import SwiftUI
 
 struct CountView: View {
   let title: String
-  let value: Int
+  let value: String
   
   var body: some View {
     VStack {
       Text(title)
-      Text("\(value)")
-        .font(.system(size: 48))
+      Text(value)
+        .font(.system(size: 28))
         .frame(width: 350)
     }
-    .padding()
+    .padding(4)
   }
 }

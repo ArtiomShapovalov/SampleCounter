@@ -9,15 +9,19 @@
 import SwiftUI
 import Combine
 
+let ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
+
 final class SmplCountModel: ObservableObject {
-  @Published var videoSmplCount: Int = 0
+  static var shared = SmplCountModel()
+  @Published var videoSmplCount:    Int = 0
   @Published var audioAppSmplCount: Int = 0
   @Published var audioMicSmplCount: Int = 0
+  @Published var logs: String
   
-  private let _ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
   private var _bag = Array<AnyCancellable>()
   
   init() {
+    logs = ud.logs
     
     _bag = [
       (\UserDefaults.videoSmplCount,    \SmplCountModel.videoSmplCount),
@@ -25,29 +29,56 @@ final class SmplCountModel: ObservableObject {
       (\UserDefaults.audioMicSmplCount, \SmplCountModel.audioMicSmplCount)
     ]
     .map { from, to in
-      _ud
+      ud
         .publisher(for: from, options: .new)
         .assign(to: to, on: self)
     }
+    
+    let ac = ud
+      .publisher(for: \UserDefaults.logs, options: .new)
+      .assign(to: \SmplCountModel.logs, on: self)
+    
+    _bag.append(ac)
   }
 }
 
 struct ContentView: View {
-  @ObservedObject private var _model = SmplCountModel()
+  @ObservedObject private var _model = SmplCountModel.shared
+  @State private var _sheetType: SheetType? = nil
+  
+  enum SheetType: Int, Identifiable {
+    var id: Int { rawValue }
+    
+    case logs
+  }
   
   var body: some View {
-    VStack {
-      Text("Sample Types").font(.title).padding()
+    NavigationView {
+      VStack {
+        Spacer()
+        
+        CountView(title: "Video",     value: "\(_model.videoSmplCount)")
+        CountView(title: "App Audio", value: "\(_model.audioAppSmplCount)")
+        CountView(title: "Mic Audio", value: "\(_model.audioMicSmplCount)")
       
-      Spacer()
-      
-      CountView(title: "Video",     value: _model.videoSmplCount)
-      CountView(title: "App Audio", value: _model.audioAppSmplCount)
-      CountView(title: "Mic Audio", value: _model.audioMicSmplCount)
-    
-      Spacer()
-      
-      BroadcastButton().frame(width: 50, height: 50).padding()
+        Spacer()
+        
+        BroadcastButton().frame(width: 50, height: 50).padding()
+      }
+      .sheet(item: $_sheetType) {
+        switch $0 {
+        case .logs: LogsView() { _sheetType = nil }
+        }
+      }
+      .navigationTitle("Sample Types")
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button("Logs") {
+            _sheetType = .logs
+          }
+        }
+      }
     }
+    .navigationViewStyle(.stack)
   }
 }

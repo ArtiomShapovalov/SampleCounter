@@ -20,4 +20,8 @@ extension UserDefaults {
   @objc dynamic var audioMicSmplCount: Int {
     integer(forKey: "audioMicSmplCount")
   }
+  
+  @objc dynamic var logs: String {
+    string(forKey: "logs") ?? ""
+  }
 }
