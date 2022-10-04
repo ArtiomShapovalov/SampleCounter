@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import AVKit
 
 let ud = UserDefaults(suiteName: "group.anjlab.SampleCounter")!
 
@@ -45,6 +46,7 @@ final class SmplCountModel: ObservableObject {
 struct ContentView: View {
   @ObservedObject private var _model = SmplCountModel.shared
   @State private var _sheetType: SheetType? = nil
+  @State private var _videoURL: URL? = nil
   
   enum SheetType: Int, Identifiable {
     var id: Int { rawValue }
@@ -57,6 +59,10 @@ struct ContentView: View {
       VStack {
         Spacer()
         
+        if let url = _videoURL {
+          VideoPlayer(player: AVPlayer(url: url)).frame(height: 160)
+        }
+        
         CountView(title: "Video",     value: "\(_model.videoSmplCount)")
         CountView(title: "App Audio", value: "\(_model.audioAppSmplCount)")
         CountView(title: "Mic Audio", value: "\(_model.audioMicSmplCount)")
@@ -64,6 +70,23 @@ struct ContentView: View {
         Spacer()
         
         BroadcastButton().frame(width: 50, height: 50).padding()
+      }
+      .onReceive(UserDefaults.suite.publisher(for: \.writingIndex)) { _ in
+        debugPrint("TRY COPY FILE TO SANDBOX")
+        let fname = FileManager.default.testFileCopyName
+        let u = FileManager.default.containerURL?.appending(path: fname)
+
+        let sandbox = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last?.appending(path: fname)
+ 
+        if let s = sandbox {
+          try? FileManager.default.removeItem(at: s)
+          _copyFile(u, to: s)
+        }
+
+        _videoURL = u
+      }
+      .onAppear {
+        debugPrint(FileManager.default.loadAll())
       }
       .sheet(item: $_sheetType) {
         switch $0 {
@@ -80,5 +103,20 @@ struct ContentView: View {
       }
     }
     .navigationViewStyle(.stack)
+  }
+  
+  private func _copyFile(_ u: URL?, to s: URL, tries: Int = 0) {
+//    if tries > 1 {
+//      debugPrint("NO LUCK COPYING")
+//      return
+//    }
+    
+    do {
+      try FileManager.default.copyItem(at: u!, to: s)
+    } catch {
+      debugPrint(error)
+//      FileManager.default.createFile(atPath: s.path, contents: nil)
+//      _copyFile(u, to: s, tries: tries + 1)
+    }
   }
 }

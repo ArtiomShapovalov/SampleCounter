@@ -19,7 +19,12 @@
 		2D13C3BD24A514C0009D9967 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3BB24A514C0009D9967 /* UserDefaults.swift */; };
 		2D13C3BF24A5196F009D9967 /* BroadcastButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */; };
 		2D13C3C124A51BA1009D9967 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C3C024A51BA1009D9967 /* CountView.swift */; };
+		3A001E6628D89E570004EC74 /* libexperimental_video_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A001E6428D89E570004EC74 /* libexperimental_video_converter.a */; };
+		3A001E6728D89E570004EC74 /* libexperimental_video_converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A001E6428D89E570004EC74 /* libexperimental_video_converter.a */; };
+		3A001E6B28DB18270004EC74 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A001E6A28DB18270004EC74 /* FileManager.swift */; };
+		3A001E6C28DB18270004EC74 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A001E6A28DB18270004EC74 /* FileManager.swift */; };
 		3A6682B228100A700057ACDE /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6682B128100A700057ACDE /* LogsView.swift */; };
+		3A6D2C9728D4C026004496BF /* H264.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6D2C9628D4C026004496BF /* H264.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +65,15 @@
 		2D13C3B124A50BD0009D9967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D13C3B924A50C07009D9967 /* SampleCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleCounter.entitlements; sourceTree = "<group>"; };
 		2D13C3BA24A50C3A009D9967 /* Broadcast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Broadcast.entitlements; sourceTree = "<group>"; };
-		2D13C3BB24A514C0009D9967 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		2D13C3BB24A514C0009D9967 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = ../SampleCounter/UserDefaults.swift; sourceTree = "<group>"; };
 		2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastButton.swift; sourceTree = "<group>"; };
 		2D13C3C024A51BA1009D9967 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
+		3A001E6428D89E570004EC74 /* libexperimental_video_converter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libexperimental_video_converter.a; sourceTree = "<group>"; };
+		3A001E6528D89E570004EC74 /* experimental_video_converter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = experimental_video_converter.h; sourceTree = "<group>"; };
+		3A001E6828D8A4140004EC74 /* SampleCounter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleCounter-Bridging-Header.h"; sourceTree = "<group>"; };
+		3A001E6A28DB18270004EC74 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		3A6682B128100A700057ACDE /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		3A6D2C9628D4C026004496BF /* H264.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H264.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A001E6628D89E570004EC74 /* libexperimental_video_converter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A001E6728D89E570004EC74 /* libexperimental_video_converter.a in Frameworks */,
 				2D13C3AD24A50BD0009D9967 /* ReplayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +100,8 @@
 		2D13C38624A5095A009D9967 = {
 			isa = PBXGroup;
 			children = (
+				3A001E6928DB18180004EC74 /* Shared */,
+				3A40E1B528D89CD9005487D6 /* VideoConverter */,
 				2D13C39124A5095A009D9967 /* SampleCounter */,
 				2D13C3AE24A50BD0009D9967 /* Broadcast */,
 				2D13C3AB24A50BD0009D9967 /* Frameworks */,
@@ -114,7 +128,6 @@
 				2D13C39D24A5095C009D9967 /* LaunchScreen.storyboard */,
 				2D13C3A024A5095C009D9967 /* Info.plist */,
 				2D13C39A24A5095C009D9967 /* Preview Content */,
-				2D13C3BB24A514C0009D9967 /* UserDefaults.swift */,
 				2D13C3BE24A5196F009D9967 /* BroadcastButton.swift */,
 				2D13C3C024A51BA1009D9967 /* CountView.swift */,
 				3A6682B128100A700057ACDE /* LogsView.swift */,
@@ -143,9 +156,29 @@
 			children = (
 				2D13C3BA24A50C3A009D9967 /* Broadcast.entitlements */,
 				2D13C3AF24A50BD0009D9967 /* SampleHandler.swift */,
+				3A6D2C9628D4C026004496BF /* H264.swift */,
 				2D13C3B124A50BD0009D9967 /* Info.plist */,
 			);
 			path = Broadcast;
+			sourceTree = "<group>";
+		};
+		3A001E6928DB18180004EC74 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3A001E6A28DB18270004EC74 /* FileManager.swift */,
+				2D13C3BB24A514C0009D9967 /* UserDefaults.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		3A40E1B528D89CD9005487D6 /* VideoConverter */ = {
+			isa = PBXGroup;
+			children = (
+				3A001E6528D89E570004EC74 /* experimental_video_converter.h */,
+				3A001E6428D89E570004EC74 /* libexperimental_video_converter.a */,
+				3A001E6828D8A4140004EC74 /* SampleCounter-Bridging-Header.h */,
+			);
+			path = VideoConverter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +188,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D13C3A324A5095C009D9967 /* Build configuration list for PBXNativeTarget "SampleCounter" */;
 			buildPhases = (
+				3A40E1B428D89C5D005487D6 /* ShellScript */,
 				2D13C38B24A5095A009D9967 /* Sources */,
 				2D13C38C24A5095A009D9967 /* Frameworks */,
 				2D13C38D24A5095A009D9967 /* Resources */,
@@ -244,6 +278,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3A40E1B428D89C5D005487D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -e\nRUST_PROJ=\"../../rust/experimental_video_converter\"\nIOS_LIB=\"$PROJECT_DIR/VideoConverter\"\nPATH=\"$PATH:/Users/artemshapovalov/.cargo/bin/\"\n\ncd \"$RUST_PROJ\"\n# Build for iOS architectures\ncargo build --target aarch64-apple-ios\ncargo build --target x86_64-apple-ios\n# Generate C bindings\ncbindgen -l C -o target/experimental_video_converter.h\n# Combine them into a universal library\nlipo -create target/aarch64-apple-ios/debug/libexperimental_video_converter.a target/x86_64-apple-ios/debug/libexperimental_video_converter.a -output target/libexperimental_video_converter.a\n# Copy resources to the iOS folder, overwriting old ones\ncp target/experimental_video_converter.h target/libexperimental_video_converter.a \"$IOS_LIB\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D13C38B24A5095A009D9967 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -252,6 +306,7 @@
 				2D13C3BC24A514C0009D9967 /* UserDefaults.swift in Sources */,
 				3A6682B228100A700057ACDE /* LogsView.swift in Sources */,
 				2D13C3BF24A5196F009D9967 /* BroadcastButton.swift in Sources */,
+				3A001E6B28DB18270004EC74 /* FileManager.swift in Sources */,
 				2D13C3C124A51BA1009D9967 /* CountView.swift in Sources */,
 				2D13C39324A5095A009D9967 /* AppDelegate.swift in Sources */,
 				2D13C39724A5095A009D9967 /* ContentView.swift in Sources */,
@@ -262,8 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A6D2C9728D4C026004496BF /* H264.swift in Sources */,
 				2D13C3BD24A514C0009D9967 /* UserDefaults.swift in Sources */,
 				2D13C3B024A50BD0009D9967 /* SampleHandler.swift in Sources */,
+				3A001E6C28DB18270004EC74 /* FileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,14 +470,21 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SampleCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = FD6ZML48V9;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = SampleCounter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anjlab.SampleCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConverter/SampleCounter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -436,14 +500,20 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SampleCounter/Preview Content\"";
 				DEVELOPMENT_TEAM = FD6ZML48V9;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = SampleCounter/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anjlab.SampleCounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConverter/SampleCounter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -455,15 +525,22 @@
 				CODE_SIGN_ENTITLEMENTS = Broadcast/Broadcast.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FD6ZML48V9;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Broadcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anjlab.SampleCounter.Broadcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConverter/SampleCounter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -476,14 +553,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FD6ZML48V9;
 				INFOPLIST_FILE = Broadcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoConverter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.anjlab.SampleCounter.Broadcast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoConverter/SampleCounter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
